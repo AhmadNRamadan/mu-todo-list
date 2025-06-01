@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mu_todo_list/utils/colors.dart';
+import 'package:mu_todo_list/widgets/customed_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,16 +13,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-        backgroundColor: HColor.primary,
-        
-      ),
-      body: Center(
-        child: Text(
-          'Welcome to the Home Screen!',
-        ),
-      ),
-    );  
+      appBar: CustomedAppBar(title: "Home Screen"),
+      body: Center(child: Text('Welcome to the Home Screen!')),
+    );
   }
 }
