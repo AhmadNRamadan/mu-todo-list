@@ -1,19 +1,21 @@
+import 'package:uuid/uuid.dart';
+
 class Todo {
   final String id;
   final String title;
   final String description;
   final String categoryId;
   final String todoDate;
-  final bool isCompleted;
+   bool isCompleted;
 
   Todo({
-    required this.id,
+   id,
     required this.title,
     required this.description,
     required this.categoryId,
     required this.todoDate, 
     this.isCompleted = false,
-  });
+  }): id = id ?? Uuid().v4();
 
   // Factory constructor to create a Todo from a map
   factory Todo.fromMap(Map<String, dynamic> map) {

@@ -22,14 +22,16 @@ class Repository {
   _onCreate(Database db, int version) async {
     // This method is called when the database is created for the first time
     await db.execute('CREATE TABLE categories(id TEXT PRIMARY KEY, name TEXT)');
-    await db.execute(
-      'CREATE TABLE todos('
-      'id TEXT PRIMARY KEY, '
-      'title TEXT, '
-      'description TEXT, '
-      'isCompleted INTEGER, '
-      'categoryId TEXT, '
-      'FOREIGN KEY (categoryId) REFERENCES',
-    );
+    await db.execute('''
+      CREATE TABLE todos(
+        id TEXT PRIMARY KEY,
+        title TEXT,
+        description TEXT ,
+        isCompleted INTEGER,
+        todoDate TEXT,  
+        categoryId TEXT,
+        FOREIGN KEY (categoryId) REFERENCES categories(id)
+      )
+      ''');
   }
 }
