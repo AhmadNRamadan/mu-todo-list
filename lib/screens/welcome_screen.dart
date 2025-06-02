@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mu_todo_list/screens/todo_screen.dart';
+import 'package:mu_todo_list/screens/home_screen.dart';
 import 'package:mu_todo_list/utils/colors.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -38,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => TodoScreen()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               },
               child: Text(

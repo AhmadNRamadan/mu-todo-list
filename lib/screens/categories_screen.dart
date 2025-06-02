@@ -204,7 +204,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     tileColor: HColor.secondary.withAlpha(50),
                     title: Text(
                       category.name,
-                      style: TextStyle(color: HColor.primary),
+                      style: TextStyle(
+                        color: HColor.primary,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
                     ),
                   );
                 },
@@ -219,9 +223,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           showModalBottomSheet(
             context: context,
             backgroundColor: Colors.white,
+            isScrollControlled: true,
             builder: (context) {
               return Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: EdgeInsets.only(
+                  left: 24,
+                  right: 24,
+                  top: 24,
+                  bottom:
+                      MediaQuery.of(context).viewInsets.bottom == 0
+                          ? 24
+                          : MediaQuery.of(context).viewInsets.bottom,
+                ),
+
                 child: Column(
                   spacing: 18,
                   mainAxisSize: MainAxisSize.min,

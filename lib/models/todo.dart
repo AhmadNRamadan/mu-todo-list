@@ -6,7 +6,7 @@ class Todo {
   final String description;
   final String categoryId;
   final String todoDate;
-   bool isCompleted;
+   int isCompleted;
 
   Todo({
    id,
@@ -14,7 +14,7 @@ class Todo {
     required this.description,
     required this.categoryId,
     required this.todoDate, 
-    this.isCompleted = false,
+    this.isCompleted = 0,
   }): id = id ?? Uuid().v4();
 
   // Factory constructor to create a Todo from a map
@@ -23,7 +23,7 @@ class Todo {
       id: map['id'] as String,
       title: map['title'] as String,
       description: map['description'] as String,
-      isCompleted: map['isCompleted'] as bool? ?? false,
+      isCompleted: map['isCompleted'] as int, 
       categoryId: map['categoryId'] as String,
       todoDate: map['todoDate'] as String,
     );
