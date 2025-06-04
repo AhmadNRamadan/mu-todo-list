@@ -13,6 +13,7 @@ class Repository {
       join(dbPath, 'expenses.db'),
       // executed only when the database is not there or when the version is incremented
       onCreate: _onCreate,
+      onConfigure: (db) async => await db.execute('PRAGMA foreign_keys = ON'),
       // increment version number only when the database scheme changes: add/drop table, add/drop column, add/drop relation
       version: 1,
     );
@@ -30,7 +31,7 @@ class Repository {
         isCompleted INTEGER,
         todoDate TEXT,  
         categoryId TEXT,
-        FOREIGN KEY (categoryId) REFERENCES categories(id)
+        FOREIGN KEY (categoryId) REFERENCES categories(id) ON Delete CASCADE
       )
       ''');
   }

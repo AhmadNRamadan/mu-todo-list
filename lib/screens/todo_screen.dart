@@ -57,19 +57,21 @@ class _TodoScreenState extends State<TodoScreen> {
                 ),
               ),
               ListView.builder(
-                itemCount: _todos.length,
+                itemCount: _todos.isNotEmpty ? _todos.length : 1,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  if (index >= _todos.length) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
                   if (_todos.isEmpty) {
                     return Center(
-                      child: Text(
-                        'No categories available',
-                        style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 20,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.3,
+                        ),
+                        child: Text(
+                          'No todos available',
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     );
