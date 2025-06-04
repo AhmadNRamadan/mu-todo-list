@@ -117,7 +117,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                 color: Colors.black54,
                               ),
                               content: Text(
-                                "Are you sure you want to delete the category '${category.name}'? This action cannot be undone.",
+                                "Are you sure you want to delete the category '${category.name}'? This action will delete all the todos that belongs to this category.",
                               ),
                               actions: [
                                 Row(
@@ -219,8 +219,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
+        onPressed: () async {
+          var success = await showModalBottomSheet(
             context: context,
             backgroundColor: Colors.white,
             isScrollControlled: true,
@@ -300,7 +300,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           setState(() {
                             _categories.add(newCategory);
                           });
-                          Navigator.pop(context);
+                          Navigator.pop(context, true);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -319,6 +319,24 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               );
             },
           );
+          if (success != null && success) {
+            _categoryNameController.clear();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Category added successfully!'),
+                backgroundColor: HColor.primary,
+                behavior: SnackBarBehavior.floating,
+              ),
+            );
+          } else if (success == false) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Failed to add category. Please try again.'),
+                backgroundColor: Colors.red,
+                behavior: SnackBarBehavior.floating,
+              ),
+            );
+          }
         },
         backgroundColor: HColor.primary,
         child: Icon(Icons.add, color: HColor.secondary),
